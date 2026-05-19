@@ -12,9 +12,9 @@ const SixPets =async () => {
   return (
     <div className='container-div mt-40'>
         <h1 className='section-heading mb-20'>Featured Pet</h1>
-        <div className='pet-container grid grid-cols-1 md:grid-cols-3 gap-3'>
+        <div className='pet-container grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-3'>
             {data.map(pet => {
-              return  <PetCard pet={pet}></PetCard>
+              return  <PetCard key={pet._id} pet={pet}></PetCard>
             })}
         </div>
     </div>

@@ -9,35 +9,7 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(SplitText);
 
 const Banner = () => {
-   useGSAP(() => {
-    let split = SplitText.create(".banner-p",{type:'words'});
-     const tl = gsap.timeline();
-
-      tl.from('.banner-h1',{
-       opacity:0,
-       x:-10
-     })
-
-      split.words.forEach(element => {
-
-        tl.from(element,{
-          opacity:0,
-          duration:0.05
-        })
-        
-      });
-      tl.from('.banner-img',{
-        opacity:0,
-        duration:1,
-        y:10
-      })
-      tl.from('.banner-btn',{
-        opacity:0,
-        y:10
-      })
-      
-      
-   },[])
+   
     
   return (
     <div className='banner container-div text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-10 mt-20 md:mt-40'>
