@@ -154,6 +154,9 @@ export default function PetCard({ pet }) {
           <Link href={`${pet._id}/${pet.petName}`}  className="flex p-3 w-full justify-center rounded-xl bg-[#1D9E75]  text-sm font-semibold text-white transition-opacity duration-150 hover:opacity-90">
             Adopt {pet.petName} 🐾
           </Link>
+          <Link href={`${pet._id}/${pet.petName}`}  className="flex p-3 w-full justify-center rounded-xl bg-[#1D9E75]  text-sm font-semibold text-white transition-opacity duration-150 hover:opacity-90">
+            View Details
+          </Link>
         </div>
       </div>
     </div>

@@ -1,15 +1,19 @@
 'use client'
+
 const AddPage = () => {
     const handleAddPet = (e) => {
         e.preventDefault()
     }
   return (
-    <div className="container-div mt-40">
-      <h1 className="section-heading mb-20">Add Pet</h1>{" "}
+    
+        <div className="container-div mb-30 mt-20 md:mt-40">
+      <h1 className="section-heading mb-20">Add a Pet for Adoption</h1>{" "}
       <form className="space-y-4 " onSubmit={handleAddPet}>
-        {/* Pet Name */}
-        <div>
-          <label className="block mb-1 font-medium">Pet Name</label>
+       
+       <div className="border mb-10 space-y-5 border-gray-200 rounded-2xl p-10 shadow-xl">
+        <h1 className="text-2xl font-bold mb-10">Basic Info</h1>
+         <div>
+          <label className="block mb-1 font-medium text-xl">Pet Name</label>
           <input
             type="text"
             name="petName"
@@ -20,7 +24,7 @@ const AddPage = () => {
 
         {/* Species */}
         <div>
-          <label className="block mb-1 font-medium">Species</label>
+          <label className="block mb-1 font-medium text-xl">Species</label>
           <input
             type="text"
             name="species"
@@ -31,7 +35,7 @@ const AddPage = () => {
 
         {/* Breed */}
         <div>
-          <label className="block mb-1 font-medium">Breed</label>
+          <label className="block text-xl mb-1 font-medium">Breed</label>
           <input
             type="text"
             name="breed"
@@ -43,7 +47,7 @@ const AddPage = () => {
         {/* Age */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block mb-1 font-medium">Age Value</label>
+            <label className="block text-xl mb-1 font-medium">Age Value</label>
             <input
               type="number"
               name="ageValue"
@@ -53,7 +57,7 @@ const AddPage = () => {
           </div>
 
           <div>
-            <label className="block mb-1 font-medium">Age Unit</label>
+            <label className="block text-xl mb-1 font-medium">Age Unit</label>
             <select name="ageUnit" className="w-full border p-2 rounded">
               <option value="months">Months</option>
               <option value="years">Years</option>
@@ -63,7 +67,7 @@ const AddPage = () => {
 
         {/* Gender */}
         <div>
-          <label className="block mb-1 font-medium">Gender</label>
+          <label className="block text-xl mb-1 font-medium">Gender</label>
           <select name="gender" className="w-full border p-2 rounded">
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -72,7 +76,7 @@ const AddPage = () => {
 
         {/* Image URL */}
         <div>
-          <label className="block mb-1 font-medium">Image URL</label>
+          <label className="block text-xl mb-1 font-medium">Image URL</label>
           <input
             type="text"
             name="imageUrl"
@@ -80,10 +84,17 @@ const AddPage = () => {
             className="w-full border p-2 rounded"
           />
         </div>
+       </div>
+
+
+
+
 
         {/* Health Status */}
-        <div>
-          <label className="block mb-1 font-medium">Health Status</label>
+       <div className="border mb-10 border-gray-200 rounded-2xl space-y-5 p-10 shadow-xl">
+        <h1 className="text-2xl font-bold mb-10">Health Info</h1>
+         <div>
+          <label className="block text-xl mb-1 font-medium">Health Status</label>
           <input
             type="text"
             name="healthStatus"
@@ -94,7 +105,7 @@ const AddPage = () => {
 
         {/* Vaccinated */}
         <div>
-          <label className="flex items-center gap-2">
+          <label className="flex text-xl items-center gap-2">
             <input type="checkbox" name="isVaccinated" />
             Vaccinated
           </label>
@@ -102,7 +113,7 @@ const AddPage = () => {
 
         {/* Vaccines */}
         <div>
-          <label className="block mb-1 font-medium">Vaccines</label>
+          <label className="block mb-1 text-xl font-medium">Vaccines</label>
           <input
             type="text"
             name="vaccines"
@@ -110,11 +121,14 @@ const AddPage = () => {
             className="w-full border p-2 rounded"
           />
         </div>
+       </div>
 
         {/* Location */}
-        <div className="grid grid-cols-3 gap-4">
+       <div className="border space-y-5 mb-10 border-gray-200 rounded-2xl p-10 shadow-xl">
+        <h1 className="text-2xl font-bold mb-10">Location</h1>
+         <div className="grid grid-cols-3 gap-4">
           <div>
-            <label className="block mb-1 font-medium">City</label>
+            <label className="block mb-1 text-xl font-medium">City</label>
             <input
               type="text"
               name="city"
@@ -124,7 +138,7 @@ const AddPage = () => {
           </div>
 
           <div>
-            <label className="block mb-1 font-medium">State</label>
+            <label className="block text-xl mb-1 font-medium">State</label>
             <input
               type="text"
               name="state"
@@ -134,7 +148,7 @@ const AddPage = () => {
           </div>
 
           <div>
-            <label className="block mb-1 font-medium">Country</label>
+            <label className="block mb-1 text-xl font-medium">Country</label>
             <input
               type="text"
               name="country"
@@ -143,10 +157,13 @@ const AddPage = () => {
             />
           </div>
         </div>
+       </div>
 
         {/* Adoption Fee */}
-        <div>
-          <label className="block mb-1 font-medium">Adoption Fee</label>
+       <div className="border mb-10 border-gray-200 space-y-5 rounded-2xl p-10 shadow-xl">
+        <h1 className="text-2xl font-bold mb-10">Listing Info</h1>
+         <div>
+          <label className="block mb-1 text-xl font-medium">Adoption Fee</label>
           <input
             type="number"
             name="adoptionFee"
@@ -157,7 +174,7 @@ const AddPage = () => {
 
         {/* Description */}
         <div>
-          <label className="block mb-1 font-medium">Description</label>
+          <label className="block  text-xl mb-1 font-medium">Description</label>
           <textarea
             name="description"
             rows="4"
@@ -168,7 +185,7 @@ const AddPage = () => {
 
         {/* Owner Email */}
         <div>
-          <label className="block mb-1 font-medium">Owner Email</label>
+          <label className="block mb-1 text-xl font-medium">Owner Email</label>
           <input
             type="email"
             name="ownerEmail"
@@ -179,7 +196,7 @@ const AddPage = () => {
 
         {/* Listed At */}
         <div>
-          <label className="block mb-1 font-medium">Listed Date</label>
+          <label className="block mb-1 text-xl font-medium">Listed Date</label>
           <input
             type="datetime-local"
             name="listedAt"
@@ -189,18 +206,20 @@ const AddPage = () => {
 
         {/* Is Adopted */}
         <div>
-          <label className="flex items-center gap-2">
+          <label className="flex text-xl items-center gap-2">
             <input type="checkbox" name="isAdopted" />
             Already Adopted
           </label>
         </div>
+       </div>
 
         {/* Submit Button */}
-        <button type="submit" className="bg-black text-white px-4 py-2 rounded">
-          Add Pet
+        <button type="submit" className="bg-black font-bold text-white px-4 py-2 rounded">
+          Add Pet for Adoption
         </button>
       </form>
     </div>
+    
   );
 };
 

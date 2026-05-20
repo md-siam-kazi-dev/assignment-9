@@ -10,6 +10,8 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
+import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useState } from "react";
  
 export function NavbarDemo() {
@@ -35,7 +37,7 @@ export function NavbarDemo() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
  
   return (
-    <div className="fixed z-40  w-full">
+    <div className="fixed z-40 bg-white w-full">
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody>
@@ -45,8 +47,8 @@ export function NavbarDemo() {
           </div>
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">Login</NavbarButton>
-            <NavbarButton variant="primary">Sign up</NavbarButton>
+            <Link href='/login'><NavbarButton variant="secondary">Login</NavbarButton></Link>
+            <Link href='/signup'><NavbarButton variant="primary" >Sign up</NavbarButton></Link>
           </div>
         </NavBody>
  
@@ -90,7 +92,7 @@ export function NavbarDemo() {
                 variant="primary"
                 className="w-full"
               >
-                Book a call
+                Sign Up
               </NavbarButton>
             </div>
           </MobileNavMenu>
