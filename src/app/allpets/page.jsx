@@ -14,7 +14,7 @@ const AllPage =async () => {
             <h1 className='section-heading mb-10'>All Pets</h1>
             <div className='pet-container grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4'>
                 {data.map(pet => {
-                  return  <PetCard pet={pet}></PetCard>
+                  return  <PetCard key={pet._id} pet={pet}></PetCard>
                 })}
             </div>
         </div>

@@ -1,8 +1,21 @@
 'use client'
 
+import { json } from "better-auth";
+
 const AddPage = () => {
-    const handleAddPet = (e) => {
+    const handleAddPet =async (e) => {
         e.preventDefault()
+        const data = new FormData(e.target);
+        const formData = Object.fromEntries(data.entries());
+        const result= await fetch('http://localhost:5000/addpet',{
+          method:'POST',
+          headers:{
+            "content-Type":'application/json',
+          },
+          body:JSON.stringify(formData),
+        })
+        console.log(result)
+
     }
   return (
     
@@ -194,23 +207,7 @@ const AddPage = () => {
           />
         </div>
 
-        {/* Listed At */}
-        <div>
-          <label className="block mb-1 text-xl font-medium">Listed Date</label>
-          <input
-            type="datetime-local"
-            name="listedAt"
-            className="w-full border p-2 rounded"
-          />
-        </div>
-
-        {/* Is Adopted */}
-        <div>
-          <label className="flex text-xl items-center gap-2">
-            <input type="checkbox" name="isAdopted" />
-            Already Adopted
-          </label>
-        </div>
+        
        </div>
 
         {/* Submit Button */}

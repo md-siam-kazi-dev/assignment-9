@@ -38,9 +38,9 @@ export default function Login() {
           callbackURL: "/",
           /**
            * remember the user session after the browser is closed.
-           * @default true
+           
            */
-          rememberMe: true,
+          
         },
         {
           onRequest: (ctx) => {
