@@ -2,9 +2,13 @@
 
 import { useSession } from "@/lib/auth-client";
 import { json } from "better-auth";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+
 
 const AddPage = () => {
   const {data} = useSession();
+  const router = useRouter();
   const user = data?.user;
     const handleAddPet =async (e) => {
         e.preventDefault()
@@ -18,6 +22,9 @@ const AddPage = () => {
           body:JSON.stringify(formData),
         })
         console.log(result)
+        router.push('/')
+        toast.success('Pet Added Successful')
+
 
     }
   return (
@@ -207,7 +214,7 @@ const AddPage = () => {
             readOnly
             name="ownerEmail"
             placeholder="example@gmail.com"
-            value={user.email}
+            value={user?.email}
             className="w-full border p-2 rounded"
           />
         </div>

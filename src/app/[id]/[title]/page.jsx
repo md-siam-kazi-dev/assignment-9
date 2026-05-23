@@ -1,9 +1,15 @@
-import Link from "next/link";
+
+import Img from "./Img";
+
+
+import { Dialog, DialogContent, DialogDescription, DialogHeader , DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 export default async function  PetDetailsPage({params}) {
     const {id} = await params;
 
-    const getData = async (pid) => {
+    
+  const user = u?.email
+  const getData = async (pid) => {
         const res = await fetch(`http://localhost:5000/${pid}`);
         const data = await res.json();
         return data;
@@ -22,11 +28,7 @@ export default async function  PetDetailsPage({params}) {
       <section className="grid min-h-screen grid-cols-1 pt-[70px] ">
         {/* Image */}
         <div className="relative overflow-hidden">
-          <img
-            src={pet.imageUrl}
-            alt={pet.petName}
-            className="w-[300px] h-[300px] shadow-2xl rounded-xl  mx-auto object-cover object-top"
-          />
+          <Img img = {pet.imageUrl} pname={pet.petName} />
 
         
         </div>
@@ -68,12 +70,118 @@ export default async function  PetDetailsPage({params}) {
 
           {/* CTA */}
           <div className="mt-12 flex flex-wrap items-center gap-6">
-            <Link
-              href="#adopt"
-              className="rounded-sm bg-[#1a1410] px-10 py-4 text-xs font-medium uppercase tracking-[0.15em] text-white transition hover:-translate-y-1 hover:bg-[#2d2520]"
-            >
-              Start Adoption
-            </Link>
+            <div className="flex gap-[10px]">
+           <Dialog>
+            <DialogTrigger className="rounded-sm bg-[#1a1410] px-10 py-4 text-xs font-medium uppercase tracking-[0.15em] text-white transition hover:-translate-y-1 hover:bg-[#2d2520]">
+              Adopt {pet.petName}
+            </DialogTrigger>
+
+            {user? pet.ownerEmail != user.email ? <DialogContent className="sm:max-w-md rounded-2xl p-0 overflow-hidden gap-0">
+              <DialogHeader className="px-6 pt-6 pb-4 bg-[#F0FBF7] border-b border-[#1D9E75]/20">
+                <div className="flex items-center gap-3 mb-1">
+                  <div className="w-9 h-9 rounded-full bg-[#1D9E75]/15 flex items-center justify-center">
+                    <img
+                      src={pet.imageUrl}
+                      className="w-8 h-8 rounded-full"
+                    ></img>
+                  </div>
+                  <DialogTitle className="text-lg font-bold text-gray-800">
+                    Adopt {pet.petName}
+                  </DialogTitle>
+                </div>
+                <DialogDescription className="text-sm text-gray-500 pl-12">
+                  Fill in the details below to start the adoption process.
+                </DialogDescription>
+              </DialogHeader>
+
+              <div className="px-6 py-5 space-y-4">
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                    Pet Name
+                  </label>
+                  <div className="flex items-center gap-2 px-3 py-2.5 rounded-lg bg-gray-50 border border-gray-200">
+                    <span className="text-sm text-gray-500">{pet.petName}</span>
+                    <span className="ml-auto text-[10px] font-medium text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">
+                      Read only
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                    Your Name
+                  </label>
+                  <div className="flex items-center gap-2 px-3 py-2.5 rounded-lg bg-gray-50 border border-gray-200">
+                    <span className="text-sm text-gray-500">{user.name}</span>
+                    <span className="ml-auto text-[10px] font-medium text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">
+                      Read only
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                    Email
+                  </label>
+                  <div className="flex items-center gap-2 px-3 py-2.5 rounded-lg bg-gray-50 border border-gray-200">
+                    <span className="text-sm text-gray-500">{user.email}</span>
+                    <span className="ml-auto text-[10px] font-medium text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">
+                      Read only
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
+                    Pickup Date <span className="text-[#1D9E75]">*</span>
+                  </label>
+                  <input
+                    type="date"
+                    value={pickupDate}
+                    onChange={(e) => setPickupDate(e.target.value)}
+                    min={new Date().toISOString().split("T")[0]}
+                    className="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1D9E75]/40 focus:border-[#1D9E75] transition"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
+                    Message
+                  </label>
+                  <textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    rows={3}
+                    placeholder="Tell us a little about yourself and why you'd like to adopt..."
+                    className="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm text-gray-700 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1D9E75]/40 focus:border-[#1D9E75] transition resize-none"
+                  />
+                </div>
+              </div>
+
+              <div className="px-6 pb-6 flex gap-3">
+                <DialogClose className="flex-1 py-2.5 rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 hover:bg-gray-50 transition">
+                  Cancel
+                </DialogClose>
+                <DialogClose className="flex-1 py-2.5 rounded-xl bg-[#1D9E75] text-sm font-semibold text-white hover:opacity-90 transition disabled:opacity-40 disabled:cursor-not-allowed" onClick={handleAdopt}
+                  disabled={!pickupDate}>
+                
+                  Confirm Adoption
+               </DialogClose>
+              </div>
+            </DialogContent> : <DialogContent>
+    <DialogHeader>
+      <DialogTitle>This is Your Listed Pet.You cannot Adopt This pet</DialogTitle>
+     
+    </DialogHeader>
+  </DialogContent>: <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Login or Sign up First To Adopt this Pet</DialogTitle>
+     
+    </DialogHeader>
+  </DialogContent>}</Dialog>
+          
+          
+        </div>
 
             <p className="text-sm text-[#7a6f62]">
               Adoption fee{" "}

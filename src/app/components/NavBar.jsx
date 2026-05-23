@@ -98,6 +98,8 @@ export function NavbarDemo() {
         onClick={async() => {
           await authClient.signOut();
           setUser(null)
+           router.refresh()
+            router.replace('/')
            
           setShowMenu(false);
         }}
@@ -166,7 +168,11 @@ export function NavbarDemo() {
               </Link>
                 <button
                   className="btn btn-primary"
-                  onClick={() => authClient.signOut()}
+                  onClick={async() => {await authClient.signOut();
+                    router.refresh()
+                    router.replace('/signup')
+                    setUser(null);
+                  }}
                 >
                 <LogOut />Sign Out
                 </button>{" "}
@@ -175,14 +181,14 @@ export function NavbarDemo() {
             ) : (
               <div className="flex w-full flex-col gap-4">
                 <NavbarButton
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => {setIsMobileMenuOpen(false);router.push('/login')}}
                   variant="primary"
                   className="w-full"
                 >
                   Login
                 </NavbarButton>
                 <NavbarButton
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => {setIsMobileMenuOpen(false),router.push('/signup')}}
                   variant="primary"
                   className="w-full"
                 >

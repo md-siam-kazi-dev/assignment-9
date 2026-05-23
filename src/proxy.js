@@ -10,7 +10,7 @@ export async function proxy(request) {
  console.log(session)
 
   if(!session || !session?.user){
-    return NextResponse.redirect(new URL('/', request.url))
+    return NextResponse.redirect(new URL('/signup', request.url))
   }
   return NextResponse.next();
   
@@ -20,5 +20,10 @@ export async function proxy(request) {
 // export default function proxy(request) { ... }
  
 export const config = {
-  matcher:'/dashboard'
+  matcher: [
+    '/dashboard',
+    '/:name/:id',
+    '/dashboard/listing',
+    '/dashboard/addpet'
+  ]
 }
