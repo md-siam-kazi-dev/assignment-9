@@ -11,7 +11,7 @@ const AllPage =async () => {
     console.log(data)
   return (
     <div className='container-div mt-20 md:mt-40 '>
-            <h1 className='section-heading mb-10'>All Pets</h1>
+            <h1 className='section-heading mb-10'>All Pets For Adoption</h1>
             <div className='pet-container grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 w-fit mx-auto'>
                 {data.map(pet => {
                   return  <PetCard key={pet._id} pet={pet}></PetCard>
