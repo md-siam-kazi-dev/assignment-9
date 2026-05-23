@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default async function  PetDetailsPage({params}) {
     const {id} = await params;
 
@@ -66,12 +68,12 @@ export default async function  PetDetailsPage({params}) {
 
           {/* CTA */}
           <div className="mt-12 flex flex-wrap items-center gap-6">
-            <a
+            <Link
               href="#adopt"
               className="rounded-sm bg-[#1a1410] px-10 py-4 text-xs font-medium uppercase tracking-[0.15em] text-white transition hover:-translate-y-1 hover:bg-[#2d2520]"
             >
               Start Adoption
-            </a>
+            </Link>
 
             <p className="text-sm text-[#7a6f62]">
               Adoption fee{" "}

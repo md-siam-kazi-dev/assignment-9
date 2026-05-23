@@ -12,38 +12,47 @@ import {
 } from "@/components/ui/resizable-navbar";
 import { Spinner } from "@/components/ui/spinner";
 import { authClient, useSession } from "@/lib/auth-client";
-import { router } from "better-auth/api";
-import { Hamburger, HamburgerIcon, Menu } from "lucide-react";
+
+import {  LayoutDashboard, LogIn, LogOut, Menu, Rows3,Home,Cat, Book, XIcon } from "lucide-react";
 
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import Router from "next/router";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+
+
+
+import { useEffect, useState } from "react";
+import { FcAbout } from "react-icons/fc";
 
 export function NavbarDemo() {
   const [showMenu, setShowMenu] = useState(false);
+  const [user,setUser] = useState({});
 
   const {data,isPending} = useSession();
+  const router = useRouter();
 
 
-  const user = data?.user;
+  
   console.log(user);
   const navItems = [
     {
-      name: "Home",
+      name: <><Home />Home</>,
       link: "/",
     },
     {
-      name: "All Pets",
+      name: <><Cat /> All Pets</>,
       link: "/allpets",
     },
     
     {
-      name:'About',
-      link:'/about'
+      name:<><Book />About</>,
+      link:''
     }
    
   ];
+  useEffect(() => {
+    setUser(data?.user);
+  },[data?.user])
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -77,23 +86,24 @@ export function NavbarDemo() {
       onClick={() => setShowMenu(!showMenu)}
       className="cursor-pointer"
     >
-      <Menu size={18} />
+      {showMenu ? <XIcon />:<Menu />}
     </button>
   </div>
 
   {showMenu && (
-    <div className="absolute right-0 mt-3 flex flex-col bg-white shadow-lg p-5 rounded-xl p-2 min-w-[120px] border">
-      <Link href='/dashboard' className=" font-bold p-3" onClick={()=> setShowMenu(!showMenu)}>DashBord</Link>
-      <Link href='/listing' className=" font-bold p-3" onClick={()=> setShowMenu(!showMenu)}>My Listing</Link>
+    <div className="absolute w-80 right-0 mt-3 flex flex-col bg-white shadow-lg p-5 rounded-xl p-2 min-w-[120px] border">
+      <Link href='/dashboard' className=" font-bold p-3 flex gap-3" onClick={()=> setShowMenu(!showMenu)}><LayoutDashboard /> DashBoard</Link>
+      <Link href='/dashboard/listing' className=" font-bold p-3 flex gap-3" onClick={()=> setShowMenu(!showMenu)}><Rows3 />My Listing</Link>
       <button className="btn bg-black" 
         onClick={async() => {
           await authClient.signOut();
-          Router.push('/')
+          setUser(null)
+           
           setShowMenu(false);
         }}
         className="w-full text-left px-3 py-2 btn btn-primary rounded-lg"
       >
-        Sign Out
+       <LogOut /> Sign Out
       </button>
     </div>
   )}
@@ -101,7 +111,7 @@ export function NavbarDemo() {
           ) : (
             <div className="flex items-center gap-4">
               <Link href="/login">
-                <NavbarButton variant="secondary">Login</NavbarButton>
+                <NavbarButton variant="secondary " className='flex'><LogIn />Login</NavbarButton>
               </Link>
               <Link href="/signup">
                 <NavbarButton variant="primary">Sign up</NavbarButton>
@@ -124,7 +134,7 @@ export function NavbarDemo() {
           </MobileNavHeader>
 
           <MobileNavMenu
-            className="bg-white"
+            className="bg-white z-44"
             isOpen={isMobileMenuOpen}
             onClose={() => setIsMobileMenuOpen(false)}
           >
@@ -133,9 +143,9 @@ export function NavbarDemo() {
                 key={`mobile-link-${idx}`}
                 href={item.link}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="relative bg-white text-neutral-600 dark:text-neutral-300"
+                className="relative flex gap-2 bg-white text-neutral-600 dark:text-neutral-300"
               >
-                <span className="block ">{item.name}</span>
+                <span className="flex gap-2.5 ">{item.name}</span>
               </Link>
             ))}
             {isPending ? (
@@ -150,15 +160,15 @@ export function NavbarDemo() {
                 
                 href='/dashboard'
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="relative bg-white text-neutral-600 dark:text-neutral-300"
+                className="relative flex gap-3 bg-white text-neutral-600 dark:text-neutral-300"
               >
-                Dashboard
+              <LayoutDashboard />  Dashboard
               </Link>
                 <button
                   className="btn btn-primary"
                   onClick={() => authClient.signOut()}
                 >
-                  Sign Out
+                <LogOut />Sign Out
                 </button>{" "}
                 
               </>

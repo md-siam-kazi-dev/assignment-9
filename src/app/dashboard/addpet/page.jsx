@@ -1,8 +1,11 @@
 'use client'
 
+import { useSession } from "@/lib/auth-client";
 import { json } from "better-auth";
 
 const AddPage = () => {
+  const {data} = useSession();
+  const user = data?.user;
     const handleAddPet =async (e) => {
         e.preventDefault()
         const data = new FormData(e.target);
@@ -201,8 +204,10 @@ const AddPage = () => {
           <label className="block mb-1 text-xl font-medium">Owner Email</label>
           <input
             type="email"
+            readOnly
             name="ownerEmail"
             placeholder="example@gmail.com"
+            value={user.email}
             className="w-full border p-2 rounded"
           />
         </div>

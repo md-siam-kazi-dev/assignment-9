@@ -20,14 +20,16 @@ import {
   Cross,
   CrossIcon,
   XIcon,
+  ListChecks,
 } from "lucide-react";
 import { useState } from "react";
 
 // ─── Sidebar nav config ───────────────────────────────────────────────────────
 const mainNav = [
+  {label:"Overview",href:'/dashboard',icon:ListChecks},
   { label: "My listings", href: "/dashboard/listing",  icon: List },
-  { label: "My requests", href: "/dashboard/myrequests", icon: Inbox, badge: 0 },
-  { label: "Requests", href: "/dashboard/requests", icon: Inbox, badge: 0 },
+  { label: "My requests", href: "/dashboard/myrequests", icon: Inbox },
+  { label: "Requests", href: "/dashboard/requests", icon: Inbox },
 ];
 
 const manageNav = [
@@ -95,7 +97,7 @@ function NavSection({ items, label ,setSideber,sideber}) {
 
 function Sidebar({sideber,setSideber}) {
   return (
-    <div className="flex h-[500px]  sm:h-full   p-10  flex-col gap-1 w-[250px] sm:w-auto absolute bg-white sm:relative  z-40 border-r-gray-300 px-3 py-5 mt-20 md:mt-30">
+    <div className="flex h-[500px]  sm:h-full   p-10  flex-col gap-1 w-[250px] sm:w-auto absolute bg-white sm:relative  z-10 border-r-gray-300 px-3 py-5 mt-20 md:mt-30">
       <h1 className="font-semibold text-2xl border-b">
         DashBoard
       </h1>

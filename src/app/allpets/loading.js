@@ -3,8 +3,8 @@ import React from "react";
 const AllpetsLoading = () => {
   return (
     <div className="container-div">
-      <h1 className="section-heading mt-40 mb-20">All Pets</h1>
-      <div className="grid grid-cols-1 :grid-cols-2 xl:grid-cols-3">
+      <h1 className="section-heading mt-40 mb-20">All Pets For Adoption</h1>
+      <div className="pet-container grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 w-fit ms-auto">
         <div
           className="mx-auto"
           style={{

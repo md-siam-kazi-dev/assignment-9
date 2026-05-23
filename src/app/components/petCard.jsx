@@ -142,12 +142,12 @@ export default function PetCard({ pet }) {
         <div className="mb-[14px] rounded-[10px] bg-[#f4f9ff] px-[14px] py-[10px] text-[13px]">
           <p className="m-0 text-[12px] text-[#888]">Listed by</p>
 
-          <a
+          <Link
             href={`mailto:${pet.ownerEmail}`}
             className="font-medium text-[#185FA5] no-underline"
           >
             {pet.ownerEmail}
-          </a>
+          </Link>
         </div>
 
         <div className="flex gap-[10px]">

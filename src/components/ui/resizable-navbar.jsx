@@ -106,7 +106,7 @@ export const NavItems = ({
             onClick={onItemClick}
             onMouseEnter={() => setHovered(idx)}
             className={cn(
-              "relative px-4 py-2 transition-colors duration-200",
+              "relative px-4 py-2 flex gap-2 transition-colors duration-200",
               isActive
                 ? "text-black dark:text-white font-semibold"
                 : "text-neutral-600 dark:text-neutral-300"
@@ -128,7 +128,7 @@ export const NavItems = ({
               />
             )}
 
-            <span className="relative z-20">{item.name}</span>
+            <span className="relative flex gap-1 items-center z-20">{item.name}</span>
           </Link>
         );
       })}
@@ -194,7 +194,7 @@ export const MobileNavMenu = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className={cn(
-            "absolute  top-16 z-50 flex w-full flex-col  items-start justify-start gap-4 rounded-lg bg-red px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950 bg-white",
+            "absolute z-100  top-16 right-9  flex w-[300px] flex-col  items-start justify-start gap-4 rounded-lg bg-red px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950 bg-white",
             className
           )}>
           {children}
@@ -217,7 +217,7 @@ export const MobileNavToggle = ({
 
 export const NavbarLogo = () => {
   return (
-    <a
+    <Link
       href="#"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black">
       <img
@@ -226,7 +226,7 @@ export const NavbarLogo = () => {
         width={30}
         height={30} />
       <span className="font-medium text-black dark:text-white">Startup</span>
-    </a>
+    </Link>
   );
 };
 
@@ -251,11 +251,11 @@ export const NavbarButton = ({
   };
 
   return (
-    <Tag
+    <a
       href={href || undefined}
       className={cn(baseStyles, variantStyles[variant], className)}
       {...props}>
       {children}
-    </Tag>
+    </a>
   );
 };
