@@ -11,12 +11,19 @@ export default async function  PetDetailsPage({params}) {
     const {user} = await auth.api.getSession({
       headers: await headers()
     })
+    const {token} = await auth.api.getToken({
+      headers: await headers()
+    })
 
     console.log(user)
    
     
   const getData = async (pid) => {
-        const res = await fetch(`http://localhost:5000/${pid}`);
+        const res = await fetch(`http://localhost:5000/${pid}`,{
+          headers:{
+             Authorization: `Bearer ${token}`,
+          }
+        });
         const data = await res.json();
         return data;
     }

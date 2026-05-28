@@ -13,7 +13,7 @@ import {
 import { Spinner } from "@/components/ui/spinner";
 import { authClient, useSession } from "@/lib/auth-client";
 
-import {  LayoutDashboard, LogIn, LogOut, Menu, Rows3,Home,Cat, Book, XIcon } from "lucide-react";
+import {  LayoutDashboard, LogIn, LogOut, Menu, Rows3,Home,Cat, Book, XIcon, Plus } from "lucide-react";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -45,8 +45,8 @@ export function NavbarDemo() {
     },
     
     {
-      name:<><Book />About</>,
-      link:''
+      name:<><Plus />Add Pet</>,
+      link:'/dashboard/addpet'
     }
    
   ];

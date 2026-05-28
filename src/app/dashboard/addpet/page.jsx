@@ -1,6 +1,6 @@
 'use client'
 
-import { useSession } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 import { json } from "better-auth";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -11,12 +11,16 @@ const AddPage = () => {
   const router = useRouter();
   const user = data?.user;
     const handleAddPet =async (e) => {
-        e.preventDefault()
+      e.preventDefault()
+       const {data:tokenData} = await authClient.token();
+       const token = tokenData?.token;
+        
         const data = new FormData(e.target);
         const formData = Object.fromEntries(data.entries());
         const result= await fetch('http://localhost:5000/addpet',{
           method:'POST',
           headers:{
+            Authorization:`b ${token}`,
             "content-Type":'application/json',
           },
           body:JSON.stringify(formData),

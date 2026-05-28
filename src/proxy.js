@@ -24,6 +24,7 @@ export const config = {
     '/dashboard',
     '/:name/:id',
     '/dashboard/listing',
-    '/dashboard/addpet'
+    '/dashboard/addpet',
+    
   ]
 }

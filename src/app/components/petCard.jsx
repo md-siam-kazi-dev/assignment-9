@@ -118,6 +118,7 @@ export default function PetCard({ pet }) {
           user,
           pickupDate,
           message,
+          requestDate: new Date(),
         }),
       });
 
