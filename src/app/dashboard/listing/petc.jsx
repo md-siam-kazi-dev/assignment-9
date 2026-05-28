@@ -14,11 +14,16 @@ import {
   Mars,
   Venus,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+
 
 export default function PetCard({ pet, onDelete, onEdit }) {
+    const router = useRouter()
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [form, setForm] = useState({
+    _id:pet._id,
     petName: pet.petName ,
     species: pet.species ,
     breed: pet.breed  ,
@@ -38,32 +43,33 @@ export default function PetCard({ pet, onDelete, onEdit }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    setForm({
+        ...form,
+        [name]:value
+    });
   };
 
-  const handleSave = () => {
-    onEdit?.({
-      ...pet,
-      petName: form.petName,
-      species: form.species,
-      breed: form.breed,
-      gender: form.gender,
-      age: { value: Number(form.ageValue), unit: form.ageUnit },
-      healthStatus: form.healthStatus,
-      vaccinationStatus: { status: form.vaccinationStatus },
-      adoptionFee: Number(form.adoptionFee),
-      isAdopted: form.isAdopted === "true" || form.isAdopted === true,
-      location: { city: form.city, state: form.state },
-      ownerEmail: form.ownerEmail,
-      imageUrl: form.imageUrl,
-      description: form.description,
-    });
+  const handleSave =async  () => {
+    
+    const msg = await fetch('http://localhost:5000/addpet',{
+        method:'PUT',
+       headers:{
+         'Content-Type':'application/json'
+       },
+       body:JSON.stringify(form)
+    })
     setEditOpen(false);
   };
 
   const handleDelete = async() => {
+     setDeleteOpen(false)
+     router.push('/dashboard')
     
-     const msg = await fetch(`http://localhost:5000/addpet/${pet._id}`)
+     const msg = await fetch(`http://localhost:5000/addpet/${pet._id}`,{
+        method:'DELETE'
+     })
+     toast.success('pet deleted successfully')
+    
   };
 
   return (
@@ -73,8 +79,8 @@ export default function PetCard({ pet, onDelete, onEdit }) {
         {/* Image */}
         <div className="relative h-[220px] overflow-hidden">
           <img
-            src={pet.imageUrl}
-            alt={pet.petName}
+            src={form.imageUrl}
+            alt={form.petName}
             onError={(e) => (e.currentTarget.src = "/images.png")}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
@@ -82,16 +88,16 @@ export default function PetCard({ pet, onDelete, onEdit }) {
 
           {/* Fee */}
           <span className="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-[13px] font-semibold text-[#185FA5] backdrop-blur-sm">
-            ${pet.adoptionFee}
+            ${form.adoptionFee}
           </span>
 
           {/* Status */}
           <span
             className={`absolute top-3 right-3 rounded-full px-3 py-1 text-[12px] font-semibold text-white backdrop-blur-sm ${
-              pet.isAdopted ? "bg-gray-500/90" : "bg-[#1D9E75]/90"
+              form.isAdopted ? "bg-gray-500/90" : "bg-[#1D9E75]/90"
             }`}
           >
-            {pet.isAdopted ? "Adopted" : "Available"}
+            {form.isAdopted ? "Adopted" : "Available"}
           </span>
         </div>
 
@@ -101,14 +107,14 @@ export default function PetCard({ pet, onDelete, onEdit }) {
           <div className="mb-1 flex items-start justify-between">
             <div>
               <h2 className="text-[22px] font-medium tracking-[-0.4px] text-gray-900 leading-tight">
-                {pet.petName}
+                {form.petName}
               </h2>
               <p className="mt-0.5 text-[13px] text-gray-400">
-                {pet.breed} · {pet.species}
+                {form.breed} · {form.species}
               </p>
             </div>
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-50">
-              {pet.gender === "Female" ? (
+              {form.gender === "Female" ? (
                 <Venus size={16} className="text-pink-500" />
               ) : (
                 <Mars size={16} className="text-blue-600" />
@@ -120,24 +126,24 @@ export default function PetCard({ pet, onDelete, onEdit }) {
           <div className="mt-2.5 mb-3 flex flex-wrap gap-3">
             <span className="flex items-center gap-1.5 text-[13px] text-gray-400">
               <Calendar size={14} />
-              {pet.age?.value} {pet.age?.unit}
+              {form.age?.value} {form.age?.unit}
             </span>
             <span className="flex items-center gap-1.5 text-[13px] text-gray-400">
               <MapPin size={14} />
-              {pet.location?.city}, {pet.location?.state}
+              {form.location?.city}, {form.location?.state}
             </span>
             <span className="flex items-center gap-1.5 text-[13px] text-gray-400 truncate max-w-full">
               <Mail size={14} className="shrink-0" />
-              <span className="truncate">{pet.ownerEmail}</span>
+              <span className="truncate">{form.ownerEmail}</span>
             </span>
           </div>
 
           {/* Pills */}
           <div className="mb-3.5 flex flex-wrap gap-1.5">
             <span className="rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-[12px] text-green-700">
-              {pet.healthStatus}
+              {form.healthStatus}
             </span>
-            {pet.vaccinationStatus?.rabies && (
+            {form.vaccinationStatus?.rabies && (
               <span className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-[12px] text-gray-500">
                 Vaccinated
               </span>
@@ -163,7 +169,7 @@ export default function PetCard({ pet, onDelete, onEdit }) {
             </button>
 
             <Link
-              href={`/${pet._id}/${pet.petName}`}
+              href={`/${pet._id}/${form.petName}`}
               className="flex h-[38px] flex-1 items-center justify-center gap-1.5 rounded-[10px] bg-[#1D9E75] text-[13px] font-medium text-white transition-opacity hover:opacity-85 active:scale-95"
             >
               <ArrowRight size={14} />
@@ -309,7 +315,7 @@ export default function PetCard({ pet, onDelete, onEdit }) {
                   <input name="state" value={form.state} onChange={handleChange} className={input} />
                 </Field>
                 <Field label="Owner / shelter email" full>
-                  <input name="ownerEmail" type="email" value={form.ownerEmail} onChange={handleChange} className={input} />
+                  <input name="ownerEmail" readOnly type="email" value={form.ownerEmail} onChange={handleChange} className={input} />
                 </Field>
                 <Field label="Image URL" full>
                   <input name="imageUrl" type="url" value={form.imageUrl} onChange={handleChange} className={input} />
