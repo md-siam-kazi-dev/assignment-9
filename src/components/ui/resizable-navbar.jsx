@@ -251,11 +251,11 @@ export const NavbarButton = ({
   };
 
   return (
-    <a
-      href={href || undefined}
-      className={cn(baseStyles, variantStyles[variant], className)}
-      {...props}>
+    <div
+      
+      className={cn(baseStyles, variantStyles[variant], className)}>
+     
       {children}
-    </a>
+    </div>
   );
 };

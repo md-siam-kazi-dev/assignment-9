@@ -33,7 +33,7 @@ export function NavbarDemo() {
 
 
   
-  console.log(user);
+  
   const navItems = [
     {
       name: <><Home />Home</>,
@@ -59,7 +59,7 @@ export function NavbarDemo() {
   return (
     <div className="fixed z-40 bg-white w-full">
       <Navbar>
-        {/* Desktop Navigation */}
+       
         <NavBody>
           <div className="flex gap-2 items-center ">
             <img src="/logo.png" className="w-10 h-10"></img>
@@ -98,7 +98,7 @@ export function NavbarDemo() {
         onClick={async() => {
           await authClient.signOut();
           setUser(null)
-           router.refresh()
+          
             router.replace('/')
            
           setShowMenu(false);
@@ -113,7 +113,7 @@ export function NavbarDemo() {
           ) : (
             <div className="flex items-center gap-4">
               <Link href="/login">
-                <NavbarButton variant="secondary " className='flex'><LogIn />Login</NavbarButton>
+                <NavbarButton variant="secondary" className='flex'><LogIn />Login</NavbarButton>
               </Link>
               <Link href="/signup">
                 <NavbarButton variant="primary">Sign up</NavbarButton>
