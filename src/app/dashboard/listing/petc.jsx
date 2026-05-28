@@ -151,7 +151,7 @@ export default function PetCard({ pet, onDelete, onEdit }) {
           </div>
 
           {/* Buttons */}
-          <div className="flex gap-2">
+          <div className="grid grid-cols-2 gap-2">
             <button
               onClick={() => setDeleteOpen(true)}
               className="flex h-[38px] flex-1 items-center justify-center gap-1.5 rounded-[10px] border border-red-200 bg-red-50 text-[13px] font-medium text-red-700 transition-opacity hover:opacity-80 active:scale-95"

@@ -29,7 +29,7 @@ const mainNav = [
   {label:"Overview",href:'/dashboard',icon:ListChecks},
   { label: "My listings", href: "/dashboard/listing",  icon: List },
   { label: "My requests", href: "/dashboard/myrequests", icon: Inbox },
-  { label: "Requests", href: "/dashboard/requests", icon: Inbox },
+  
 ];
 
 const manageNav = [

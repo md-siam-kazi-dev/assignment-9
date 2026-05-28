@@ -1,5 +1,7 @@
 import React from 'react'
 import PetCard from './petCard';
+import { ShimmerButton } from '@/components/ui/shimmer-button';
+import BTN from './BTN';
 
 const SixPets =async () => {
     const getData = async () => {
@@ -16,6 +18,9 @@ const SixPets =async () => {
             {data.map(pet => {
               return  <PetCard key={pet._id} pet={pet}></PetCard>
             })}
+        </div>
+        <div className='w-fit mx-auto'>
+          <BTN />
         </div>
     </div>
   )
