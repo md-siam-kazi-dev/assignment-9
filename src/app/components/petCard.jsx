@@ -104,7 +104,7 @@ export default function PetCard({ pet }) {
   const [requested, setRequested] = useState(false);
 
   const handleAdopt = async () => {
-    try {
+    
       const res = await fetch("http://assignment-9-backendsiam.vercel.app/pet/req", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -118,12 +118,10 @@ export default function PetCard({ pet }) {
         }),
       });
 
-      if (!res.ok) throw new Error("Request failed");
+      
 
       toast.success("Adoption request sent");
-    } catch (err) {
-      toast.error("Something went wrong");
-    }
+    
   };
   return (
     <div className="mx-auto w-[350px] flex justify-between flex-col overflow-hidden rounded-3xl bg-white shadow-[0_8px_40px_rgba(0,0,0,0.10)]">
