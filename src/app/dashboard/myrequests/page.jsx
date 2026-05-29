@@ -41,7 +41,8 @@ const MyRequest = () => {
         {requestData.map(x => (   
           <PetRequestCard
             key={x._id}
-            request={x}          
+            request={x}   
+            status = {x.status}       
             onView={(id) => router.push(`/pets/${id}`)}
             onCancel={async (id) => {
               await fetch(`http://localhost:5000/pet/req/${id}`, { method: "DELETE" })

@@ -55,7 +55,7 @@ const router = useRouter()
   }
 
   return (
-    <div className="container-div mt-20 md:mt-40">
+    <div className="container-div w-fit mx-auto mt-20 md:mt-40">
       <h1 className="section-heading text-center mb-10">
         My Listing
       </h1>

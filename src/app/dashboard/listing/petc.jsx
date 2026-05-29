@@ -13,63 +13,64 @@ import {
   Check,
   Mars,
   Venus,
+  CircleAlertIcon,
+  XIcon,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-
+import Req from "./req";
 
 export default function PetCard({ pet, onDelete, onEdit }) {
-    const router = useRouter()
+  const router = useRouter();
+  const [openReq, setOpenReq] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [form, setForm] = useState({
-    _id:pet._id,
-    petName: pet.petName ,
-    species: pet.species ,
-    breed: pet.breed  ,
-    gender: pet.gender ,
+    _id: pet._id,
+    petName: pet.petName,
+    species: pet.species,
+    breed: pet.breed,
+    gender: pet.gender,
     ageValue: pet.age?.value,
-    ageUnit: pet.age?.unit ,
-    healthStatus: pet.healthStatus ,
-    vaccinationStatus: pet.vaccinationStatus?.status ,
-    adoptionFee: pet.adoptionFee ,
-    isAdopted: pet.isAdopted ,
-    city: pet.location?.city ,
+    ageUnit: pet.age?.unit,
+    healthStatus: pet.healthStatus,
+    vaccinationStatus: pet.vaccinationStatus?.status,
+    adoptionFee: pet.adoptionFee,
+    isAdopted: pet.isAdopted,
+    city: pet.location?.city,
     state: pet.location?.state,
     ownerEmail: pet.ownerEmail,
-    imageUrl: pet.imageUrl ,
-    description: pet.description ,
+    imageUrl: pet.imageUrl,
+    description: pet.description,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({
-        ...form,
-        [name]:value
+      ...form,
+      [name]: value,
     });
   };
 
-  const handleSave =async  () => {
-    
-    const msg = await fetch('http://localhost:5000/addpet',{
-        method:'PUT',
-       headers:{
-         'Content-Type':'application/json'
-       },
-       body:JSON.stringify(form)
-    })
+  const handleSave = async () => {
+    const msg = await fetch("http://localhost:5000/addpet", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    });
     setEditOpen(false);
   };
 
-  const handleDelete = async() => {
-     setDeleteOpen(false)
-     router.push('/dashboard')
-    
-     const msg = await fetch(`http://localhost:5000/addpet/${pet._id}`,{
-        method:'DELETE'
-     })
-     toast.success('pet deleted successfully')
-    
+  const handleDelete = async () => {
+    setDeleteOpen(false);
+    router.push("/dashboard");
+
+    const msg = await fetch(`http://localhost:5000/addpet/${pet._id}`, {
+      method: "DELETE",
+    });
+    toast.success("pet deleted successfully");
   };
 
   return (
@@ -175,6 +176,14 @@ export default function PetCard({ pet, onDelete, onEdit }) {
               <ArrowRight size={14} />
               Details
             </Link>
+
+            <button
+              onClick={() => setOpenReq(true)}
+              className="flex h-[38px] flex-1 items-center justify-center gap-1.5 rounded-[10px] border border-blue-200 bg-blue-50 text-[13px] font-medium text-blue-700 transition-opacity hover:opacity-80 active:scale-95"
+            >
+              <CircleAlertIcon size={14} />
+              Requests
+            </button>
           </div>
         </div>
       </div>
@@ -241,24 +250,43 @@ export default function PetCard({ pet, onDelete, onEdit }) {
 
             {/* Body */}
             <div className="overflow-y-auto px-5 py-4 space-y-5 flex-1">
-
               {/* Basic Info */}
               <Section label="Basic info">
                 <Field label="Pet name">
-                  <input name="petName" value={form.petName} onChange={handleChange} className={input} />
+                  <input
+                    name="petName"
+                    value={form.petName}
+                    onChange={handleChange}
+                    className={input}
+                  />
                 </Field>
                 <Field label="Species">
-                  <select name="species" value={form.species} onChange={handleChange} className={input}>
+                  <select
+                    name="species"
+                    value={form.species}
+                    onChange={handleChange}
+                    className={input}
+                  >
                     {["Cat", "Dog", "Rabbit", "Bird", "Other"].map((s) => (
                       <option key={s}>{s}</option>
                     ))}
                   </select>
                 </Field>
                 <Field label="Breed">
-                  <input name="breed" value={form.breed} onChange={handleChange} className={input} />
+                  <input
+                    name="breed"
+                    value={form.breed}
+                    onChange={handleChange}
+                    className={input}
+                  />
                 </Field>
                 <Field label="Gender">
-                  <select name="gender" value={form.gender} onChange={handleChange} className={input}>
+                  <select
+                    name="gender"
+                    value={form.gender}
+                    onChange={handleChange}
+                    className={input}
+                  >
                     <option>Male</option>
                     <option>Female</option>
                   </select>
@@ -268,10 +296,22 @@ export default function PetCard({ pet, onDelete, onEdit }) {
               {/* Age */}
               <Section label="Age">
                 <Field label="Value">
-                  <input name="ageValue" type="number" min={0} value={form.ageValue} onChange={handleChange} className={input} />
+                  <input
+                    name="ageValue"
+                    type="number"
+                    min={0}
+                    value={form.ageValue}
+                    onChange={handleChange}
+                    className={input}
+                  />
                 </Field>
                 <Field label="Unit">
-                  <select name="ageUnit" value={form.ageUnit} onChange={handleChange} className={input}>
+                  <select
+                    name="ageUnit"
+                    value={form.ageUnit}
+                    onChange={handleChange}
+                    className={input}
+                  >
                     {["days", "weeks", "months", "years"].map((u) => (
                       <option key={u}>{u}</option>
                     ))}
@@ -282,24 +322,55 @@ export default function PetCard({ pet, onDelete, onEdit }) {
               {/* Health & Status */}
               <Section label="Health & status">
                 <Field label="Health status">
-                  <select name="healthStatus" value={form.healthStatus} onChange={handleChange} className={input}>
-                    {["Healthy", "Needs care", "Under treatment", "Recovered"].map((s) => (
+                  <select
+                    name="healthStatus"
+                    value={form.healthStatus}
+                    onChange={handleChange}
+                    className={input}
+                  >
+                    {[
+                      "Healthy",
+                      "Needs care",
+                      "Under treatment",
+                      "Recovered",
+                    ].map((s) => (
                       <option key={s}>{s}</option>
                     ))}
                   </select>
                 </Field>
                 <Field label="Vaccination">
-                  <select name="vaccinationStatus" value={form.vaccinationStatus} onChange={handleChange} className={input}>
-                    {["Fully vaccinated", "Partially vaccinated", "Not vaccinated"].map((s) => (
+                  <select
+                    name="vaccinationStatus"
+                    value={form.vaccinationStatus}
+                    onChange={handleChange}
+                    className={input}
+                  >
+                    {[
+                      "Fully vaccinated",
+                      "Partially vaccinated",
+                      "Not vaccinated",
+                    ].map((s) => (
                       <option key={s}>{s}</option>
                     ))}
                   </select>
                 </Field>
                 <Field label="Adoption fee ($)">
-                  <input name="adoptionFee" type="number" min={0} value={form.adoptionFee} onChange={handleChange} className={input} />
+                  <input
+                    name="adoptionFee"
+                    type="number"
+                    min={0}
+                    value={form.adoptionFee}
+                    onChange={handleChange}
+                    className={input}
+                  />
                 </Field>
                 <Field label="Adopted?">
-                  <select name="isAdopted" value={String(form.isAdopted)} onChange={handleChange} className={input}>
+                  <select
+                    name="isAdopted"
+                    value={String(form.isAdopted)}
+                    onChange={handleChange}
+                    className={input}
+                  >
                     <option value="false">No — Available</option>
                     <option value="true">Yes — Adopted</option>
                   </select>
@@ -309,16 +380,39 @@ export default function PetCard({ pet, onDelete, onEdit }) {
               {/* Location & Contact */}
               <Section label="Location & contact">
                 <Field label="City">
-                  <input name="city" value={form.city} onChange={handleChange} className={input} />
+                  <input
+                    name="city"
+                    value={form.city}
+                    onChange={handleChange}
+                    className={input}
+                  />
                 </Field>
                 <Field label="State">
-                  <input name="state" value={form.state} onChange={handleChange} className={input} />
+                  <input
+                    name="state"
+                    value={form.state}
+                    onChange={handleChange}
+                    className={input}
+                  />
                 </Field>
                 <Field label="Owner / shelter email" full>
-                  <input name="ownerEmail" readOnly type="email" value={form.ownerEmail} onChange={handleChange} className={input} />
+                  <input
+                    name="ownerEmail"
+                    readOnly
+                    type="email"
+                    value={form.ownerEmail}
+                    onChange={handleChange}
+                    className={input}
+                  />
                 </Field>
                 <Field label="Image URL" full>
-                  <input name="imageUrl" type="url" value={form.imageUrl} onChange={handleChange} className={input} />
+                  <input
+                    name="imageUrl"
+                    type="url"
+                    value={form.imageUrl}
+                    onChange={handleChange}
+                    className={input}
+                  />
                 </Field>
               </Section>
 
@@ -352,6 +446,25 @@ export default function PetCard({ pet, onDelete, onEdit }) {
                 Save changes
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Requests Dialog  */}
+      {openReq && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4"
+          onClick={(e) => e.target === e.currentTarget && setDeleteOpen(false)}
+        >
+          <div className="flex w-full max-w-lg flex-col p-4 rounded-2xl border border-black/[0.07] bg-white max-h-[90vh] overflow-hidden">
+
+          {/* reqest data show here  */}
+          <Req id={pet._id} />
+
+          <button className="btn border-1 mx-auto rounded-2xl border-gray-500 w-fit mr-0 btn-outline" onClick={() => setOpenReq(false)}><XIcon /> Close </button>
+          
+          
+          
           </div>
         </div>
       )}
