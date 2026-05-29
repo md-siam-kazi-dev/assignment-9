@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
 
 import { Spinner } from "@/components/ui/spinner";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,7 +16,7 @@ export default function SignUp() {
   const [errorPass, setErrorPass] = useState("");
   const [loading, setLoading] = useState(false);
   const [googleLoading,setGoogleLoading] = useState(false);
-
+  const router = useRouter()
   // validate password
   const validatePassword = (password) => {
     const hasUpper = /[A-Z]/.test(password);
@@ -71,7 +72,7 @@ export default function SignUp() {
       {
         onSuccess: () => {
           toast.success("Sign Up Successfully");
-          redirect("/");
+          router.push('/')
         },
 
         onError: (ctx) => {
