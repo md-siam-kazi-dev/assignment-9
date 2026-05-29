@@ -16,7 +16,7 @@ const AllPage = () => {
     setLoading(true);
 
     const res = await fetch(
-      `http://assignment-9-backend-i3ob.vercel.app/allpets${sQ ? `?search=${sQ}` : ''}`
+      `http://assignment-9-backendsiam.vercel.app/allpets${sQ ? `?search=${sQ}` : ''}`
     );
 
     const dataa = await res.json();

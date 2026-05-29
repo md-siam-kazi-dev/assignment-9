@@ -105,7 +105,7 @@ export default function PetCard({ pet }) {
 
   const handleAdopt = async () => {
     try {
-      const res = await fetch("http://assignment-9-backend-i3ob.vercel.app/pet/req", {
+      const res = await fetch("http://assignment-9-backendsiam.vercel.app/pet/req", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -202,7 +202,7 @@ export default function PetCard({ pet }) {
               className="flex p-3 w-full justify-center rounded-xl bg-[#1D9E75] text-sm font-semibold text-white transition-opacity duration-150 hover:opacity-90"
               onClick={async () => {
                
-                const r = await fetch("http://assignment-9-backend-i3ob.vercel.app/pet/req");
+                const r = await fetch("http://assignment-9-backendsiam.vercel.app/pet/req");
                 const data = await r.json();
                 console.log(data);
                 data.forEach((p) => {

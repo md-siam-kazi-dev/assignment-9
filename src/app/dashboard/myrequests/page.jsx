@@ -21,7 +21,7 @@ const MyRequest = () => {
       const {data:tokenData}=await authClient.token();
       const token = tokenData?.token;
 
-      const res = await fetch('http://assignment-9-backend-i3ob.vercel.app/pet/req',{
+      const res = await fetch('http://assignment-9-backendsiam.vercel.app/pet/req',{
         headers:{
           Authorization : `Beaare ${token}`
         }
@@ -45,7 +45,7 @@ const MyRequest = () => {
             status = {x.status}       
             onView={(id) => router.push(`/pets/${id}`)}
             onCancel={async (id) => {
-              await fetch(`http://assignment-9-backend-i3ob.vercel.app/pet/req/${id}`, { method: "DELETE" })
+              await fetch(`http://assignment-9-backendsiam.vercel.app/pet/req/${id}`, { method: "DELETE" })
               setRequestData(x => x.filter(r => r._id !== id))  
             }}
           />

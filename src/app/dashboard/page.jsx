@@ -12,8 +12,8 @@ const DashBoard = async () => {
 
   const getData = async () => {
     if (user) {
-      const res = await fetch(`http://assignment-9-backend-i3ob.vercel.app/user/${user.email}`);
-      const reqes = await fetch ('http://assignment-9-backend-i3ob.vercel.app/pet/req',{
+      const res = await fetch(`http://assignment-9-backendsiam.vercel.app/user/${user.email}`);
+      const reqes = await fetch ('http://assignment-9-backendsiam.vercel.app/pet/req',{
         headers:{
           Authorization : `beareer ${token}`
         }
