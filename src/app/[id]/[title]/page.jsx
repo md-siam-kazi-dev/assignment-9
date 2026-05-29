@@ -17,7 +17,7 @@ export default async function  PetDetailsPage({params}) {
    
     
   const getData = async (pid) => {
-        const res = await fetch(`http://assignment-9-backend-k687.vercel.app/${pid}`,{
+        const res = await fetch(`http://assignment-9-backend-i3ob.vercel.app/${pid}`,{
           headers:{
              Authorization: `Bearer ${token}`,
           }

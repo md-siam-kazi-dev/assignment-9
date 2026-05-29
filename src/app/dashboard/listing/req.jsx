@@ -15,7 +15,7 @@ const Req = ({id}) => {
         const {data:tokenData} = await authClient.token();
         const token = tokenData?.token;
 
-        const res = await fetch('http://assignment-9-backend-k687.vercel.app/pet/req',{
+        const res = await fetch('http://assignment-9-backend-i3ob.vercel.app/pet/req',{
             headers:{
                 Authorization :`b ${token}`
             }
@@ -49,7 +49,7 @@ const Req = ({id}) => {
     },[])
 
     const handleReq =async (req) =>{
-        const res = await fetch(`http://assignment-9-backend-k687.vercel.app/pet/req/${req}/${id}`,{
+        const res = await fetch(`http://assignment-9-backend-i3ob.vercel.app/pet/req/${req}/${id}`,{
             method:'PATCH'
         });
         

@@ -18,7 +18,7 @@ const Modal = ({user,pet}) => {
     const handleAdopt =async () => {
      
       try {
-      const res = await fetch("http://assignment-9-backend-k687.vercel.app/pet/req", {
+      const res = await fetch("http://assignment-9-backend-i3ob.vercel.app/pet/req", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -43,7 +43,7 @@ const Modal = ({user,pet}) => {
     };
     useEffect(() =>{
       const checkRequested = async() => {
-        const res = await fetch('http://assignment-9-backend-k687.vercel.app/pet/req');
+        const res = await fetch('http://assignment-9-backend-i3ob.vercel.app/pet/req');
         const data = await res.json();
         console.log(data)
         data.forEach((p) => {

@@ -16,7 +16,7 @@ const AddPage = () => {
         
         const data = new FormData(e.target);
         const formData = Object.fromEntries(data.entries());
-        const result= await fetch('http://assignment-9-backend-k687.vercel.app/addpet',{
+        const result= await fetch('http://assignment-9-backend-i3ob.vercel.app/addpet',{
           method:'POST',
           headers:{
             Authorization:`b ${token}`,

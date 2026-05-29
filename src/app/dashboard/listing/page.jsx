@@ -22,7 +22,7 @@ const router = useRouter()
     const getData = async () => {
       if (user) {
         const res = await fetch(
-          `http://assignment-9-backend-k687.vercel.app/user/${user.email}`
+          `http://assignment-9-backend-i3ob.vercel.app/user/${user.email}`
         );
 
         const resData = await res.json();
@@ -41,7 +41,7 @@ const router = useRouter()
   // DELETE FUNCTION
   const handleDelete = async (id) => {
   
-     const result =  await fetch(`http://assignment-9-backend-k687.vercel.app/pet/${id}`, {
+     const result =  await fetch(`http://assignment-9-backend-i3ob.vercel.app/pet/${id}`, {
         method: "DELETE",
       });
     const res = await result.json();
