@@ -1,22 +1,17 @@
 "use client";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 } from "@/components/ui/dialog";
-import { Field, FieldGroup } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useEffect, useState } from "react";
 import { useSession } from "@/lib/auth-client";
+import { useState } from "react";
 import { toast } from "sonner";
 
 const Badge = ({ children, color }) => {
@@ -110,7 +105,7 @@ export default function PetCard({ pet }) {
 
   const handleAdopt = async () => {
     try {
-      const res = await fetch("http://localhost:5000/pet/req", {
+      const res = await fetch("http://assignment-9-backend-steel.vercel.app/pet/req", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -207,7 +202,7 @@ export default function PetCard({ pet }) {
               className="flex p-3 w-full justify-center rounded-xl bg-[#1D9E75] text-sm font-semibold text-white transition-opacity duration-150 hover:opacity-90"
               onClick={async () => {
                
-                const r = await fetch("http://localhost:5000/pet/req");
+                const r = await fetch("http://assignment-9-backend-steel.vercel.app/pet/req");
                 const data = await r.json();
                 console.log(data);
                 data.forEach((p) => {

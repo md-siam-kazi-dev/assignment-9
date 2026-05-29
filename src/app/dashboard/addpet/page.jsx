@@ -1,7 +1,6 @@
 'use client'
 
 import { authClient, useSession } from "@/lib/auth-client";
-import { json } from "better-auth";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
@@ -17,7 +16,7 @@ const AddPage = () => {
         
         const data = new FormData(e.target);
         const formData = Object.fromEntries(data.entries());
-        const result= await fetch('http://localhost:5000/addpet',{
+        const result= await fetch('http://assignment-9-backend-steel.vercel.app/addpet',{
           method:'POST',
           headers:{
             Authorization:`b ${token}`,

@@ -1,7 +1,5 @@
 import { auth } from "@/lib/auth";
-import { authClient } from "@/lib/auth-client";
 import { headers } from "next/headers";
-import React from "react";
 
 const DashBoard = async () => {
   const { user } = await auth.api.getSession({
@@ -14,8 +12,8 @@ const DashBoard = async () => {
 
   const getData = async () => {
     if (user) {
-      const res = await fetch(`http://localhost:5000/user/${user.email}`);
-      const reqes = await fetch ('http://localhost:5000/pet/req',{
+      const res = await fetch(`http://assignment-9-backend-steel.vercel.app/user/${user.email}`);
+      const reqes = await fetch ('http://assignment-9-backend-steel.vercel.app/pet/req',{
         headers:{
           Authorization : `beareer ${token}`
         }

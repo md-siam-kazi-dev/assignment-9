@@ -1,8 +1,6 @@
-import Link from "next/link";
-import Img from "./Img";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { Dialog, DialogContent, DialogDescription, DialogHeader , DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import Img from "./Img";
 import Modal from "./Modal";
 
 export default async function  PetDetailsPage({params}) {
@@ -19,7 +17,7 @@ export default async function  PetDetailsPage({params}) {
    
     
   const getData = async (pid) => {
-        const res = await fetch(`http://localhost:5000/${pid}`,{
+        const res = await fetch(`http://assignment-9-backend-steel.vercel.app/${pid}`,{
           headers:{
              Authorization: `Bearer ${token}`,
           }

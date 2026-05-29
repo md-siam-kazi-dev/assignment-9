@@ -1,8 +1,8 @@
 'use client'
 
 import { authClient, useSession } from "@/lib/auth-client"
+import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"  
 import PetRequestCard from "./petcard"
 
 
@@ -21,7 +21,7 @@ const MyRequest = () => {
       const {data:tokenData}=await authClient.token();
       const token = tokenData?.token;
 
-      const res = await fetch('http://localhost:5000/pet/req',{
+      const res = await fetch('http://assignment-9-backend-steel.vercel.app/pet/req',{
         headers:{
           Authorization : `Beaare ${token}`
         }
@@ -45,7 +45,7 @@ const MyRequest = () => {
             status = {x.status}       
             onView={(id) => router.push(`/pets/${id}`)}
             onCancel={async (id) => {
-              await fetch(`http://localhost:5000/pet/req/${id}`, { method: "DELETE" })
+              await fetch(`http://assignment-9-backend-steel.vercel.app/pet/req/${id}`, { method: "DELETE" })
               setRequestData(x => x.filter(r => r._id !== id))  
             }}
           />

@@ -1,11 +1,9 @@
 "use client";
 
 import { useSession } from "@/lib/auth-client";
-import { useEffect, useState } from "react";
-import { CakeIcon, MapPin } from "lucide-react";
-import Link from "next/link";
-import { Button, Modal, Spinner } from "@heroui/react";
+import { Spinner } from "@heroui/react";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import PetCard from "./petc";
 
 
@@ -24,7 +22,7 @@ const router = useRouter()
     const getData = async () => {
       if (user) {
         const res = await fetch(
-          `http://localhost:5000/user/${user.email}`
+          `http://assignment-9-backend-steel.vercel.app/user/${user.email}`
         );
 
         const resData = await res.json();
@@ -43,7 +41,7 @@ const router = useRouter()
   // DELETE FUNCTION
   const handleDelete = async (id) => {
   
-     const result =  await fetch(`http://localhost:5000/pet/${id}`, {
+     const result =  await fetch(`http://assignment-9-backend-steel.vercel.app/pet/${id}`, {
         method: "DELETE",
       });
     const res = await result.json();

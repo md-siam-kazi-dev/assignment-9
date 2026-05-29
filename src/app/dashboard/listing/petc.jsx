@@ -1,22 +1,22 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
 import {
+  ArrowRight,
   Calendar,
-  MapPin,
+  Check,
+  CircleAlertIcon,
   Mail,
+  MapPin,
+  Mars,
   Pencil,
   Trash2,
-  ArrowRight,
-  X,
-  Check,
-  Mars,
   Venus,
-  CircleAlertIcon,
+  X,
   XIcon,
 } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { toast } from "sonner";
 import Req from "./req";
 
@@ -53,21 +53,22 @@ export default function PetCard({ pet, onDelete, onEdit }) {
   };
 
   const handleSave = async () => {
-    const msg = await fetch("http://localhost:5000/addpet", {
+     setEditOpen(false);
+    const msg = await fetch("http://assignment-9-backend-steel.vercel.app/addpet", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(form),
     });
-    setEditOpen(false);
+   
   };
 
   const handleDelete = async () => {
     setDeleteOpen(false);
     router.push("/dashboard");
 
-    const msg = await fetch(`http://localhost:5000/addpet/${pet._id}`, {
+    const msg = await fetch(`http://assignment-9-backend-steel.vercel.app/addpet/${pet._id}`, {
       method: "DELETE",
     });
     toast.success("pet deleted successfully");

@@ -1,11 +1,9 @@
-import React from 'react'
-import PetCard from './petCard';
-import { ShimmerButton } from '@/components/ui/shimmer-button';
 import BTN from './BTN';
+import PetCard from './petCard';
 
 const SixPets =async () => {
     const getData = async () => {
-        const res = await fetch('http://localhost:5000/6pets');
+        const res = await fetch('http://assignment-9-backend-steel.vercel.app/6pets');
         const data = await res.json();
         return data;
     }

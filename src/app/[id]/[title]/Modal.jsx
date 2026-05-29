@@ -1,6 +1,6 @@
 'use client'
 
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -18,7 +18,7 @@ const Modal = ({user,pet}) => {
     const handleAdopt =async () => {
      
       try {
-      const res = await fetch("http://localhost:5000/pet/req", {
+      const res = await fetch("http://assignment-9-backend-steel.vercel.app/pet/req", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -43,7 +43,7 @@ const Modal = ({user,pet}) => {
     };
     useEffect(() =>{
       const checkRequested = async() => {
-        const res = await fetch('http://localhost:5000/pet/req');
+        const res = await fetch('http://assignment-9-backend-steel.vercel.app/pet/req');
         const data = await res.json();
         console.log(data)
         data.forEach((p) => {
