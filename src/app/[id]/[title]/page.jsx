@@ -28,11 +28,11 @@ export default async function PetDetailsPage({ params }) {
   try {
     const res = await fetch(`${API_URL}/${id}`, {
       headers: {
-        Authorization: `Bearer ${token}`, // ✅ fixed "beareer" typo
+        Authorization: `Bearer ${token}`, //
       },
     });
 
-    if (!res.ok) throw new Error("Failed to fetch pet");
+  
 
     const pets = await res.json();
     pet = pets[0];
@@ -40,14 +40,7 @@ export default async function PetDetailsPage({ params }) {
     console.error("Pet fetch error:", err);
   }
 
-  // If pet not found, show fallback
-  if (!pet) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-xl text-red-500">Pet not found.</p>
-      </div>
-    );
-  }
+ 
 
   return (
     <div className="container-div mt-30 text-[#1a1410]">
