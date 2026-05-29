@@ -21,7 +21,7 @@ const DashBoard = async () => {
       
       const resData = await res.json();
       const reqData = await reqes.json();
-      const x = reqData.filter(p => p.user.id === user.id)
+      
       return {
         resData,
         reqData
@@ -37,7 +37,7 @@ const DashBoard = async () => {
   return (
     <div className="min-h-screen mt-20 md:mt-40 section-heading">
       <h1 className="section-heading mb-10">DashBoard</h1>
-      <div className="w-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mx-auto">
+      <div className="w-fit grid grid-cols-1 md:grid-cols-2  gap-2 mx-auto">
         <div className="w-50 h-50   flex-col gap-4 shadow border rounded-2xl flex justify-center items-center "><p className="font-bold text-2xl">Total Listing</p><p className="text-xl font-semibold text-red-500">{listing}</p></div>
         <div className="w-fit mx-auto">
         <div className="w-50 h-50  flex-col gap-4 shadow border rounded-2xl flex justify-center items-center "><p className="font-bold text-2xl">My Requests</p><p className="text-xl font-semibold text-red-500">{myRequest}</p></div>
