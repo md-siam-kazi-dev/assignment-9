@@ -54,7 +54,7 @@ export default function PetCard({ pet, onDelete, onEdit }) {
 
   const handleSave = async () => {
      setEditOpen(false);
-    const msg = await fetch("http://assignment-9-backend-steel.vercel.app/addpet", {
+    const msg = await fetch("http://assignment-9-backend-k687.vercel.app/addpet", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -68,7 +68,7 @@ export default function PetCard({ pet, onDelete, onEdit }) {
     setDeleteOpen(false);
     router.push("/dashboard");
 
-    const msg = await fetch(`http://assignment-9-backend-steel.vercel.app/addpet/${pet._id}`, {
+    const msg = await fetch(`http://assignment-9-backend-k687.vercel.app/addpet/${pet._id}`, {
       method: "DELETE",
     });
     toast.success("pet deleted successfully");
