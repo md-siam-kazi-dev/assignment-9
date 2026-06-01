@@ -34,9 +34,10 @@ const DashBoard = async () => {
 
     const resData = await res.json();
     const reqData = await reqes.json();
+    const x = reqData.filter(y => y.user.email === user.email);
 
     listing = resData?.length ?? 0;
-    myRequest = reqData?.length ?? 0;
+    myRequest = x?.length ?? 0;
 
   } catch (err) {
     console.error("Dashboard fetch error:", err);
