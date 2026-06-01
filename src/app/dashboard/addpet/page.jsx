@@ -16,7 +16,8 @@ const AddPage = () => {
         
         const data = new FormData(e.target);
         const formData = Object.fromEntries(data.entries());
-        const result= await fetch('http://ass9-backend-zeta.vercel.app/addpet',{
+        try{
+          const result= await fetch('http://ass9-backend-zeta.vercel.app/addpet',{
           method:'POST',
           headers:{
             Authorization:`b ${token}`,
@@ -24,6 +25,10 @@ const AddPage = () => {
           },
           body:JSON.stringify(formData),
         })
+        }
+        catch(err){
+          toast('Failed')
+        }
         console.log(result)
         router.push('/')
         toast.success('Pet Added Successful')
