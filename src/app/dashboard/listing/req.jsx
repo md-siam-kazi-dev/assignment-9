@@ -4,7 +4,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { authClient } from "@/lib/auth-client";
 import { useEffect, useState } from "react";
 
-const Req = ({id}) => {
+const Req = ({id,setOpenReq,openReq}) => {
 
     
 
@@ -70,6 +70,7 @@ const Req = ({id}) => {
                             
                             {x.status === 'pending' && (
                                 <><button onClick={async () => {
+                                    setOpenReq(!openReq)
 
                                     handleReq('accepted')
                                     
@@ -80,6 +81,7 @@ const Req = ({id}) => {
 
                             }} className={`btn btn-primary disabled`}>Accept</button>
                             <button onClick={()=>{
+                                setOpenReq(!openReq)
                                 handleReq('rejected')
                             }} className="btn btn-secondary">Reject</button></>
                             )}

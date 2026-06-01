@@ -16,6 +16,12 @@ export async function proxy(request) {
   
 }
  
+//  const isLoggedIn = !!session?.user;
+//   const { pathname } = request.nextUrl;
+
+//   if (isLoggedIn && (pathname === "/login" || pathname === "/signup")) {
+//     return NextResponse.redirect(new URL("/", request.url));
+//   }
 // Alternatively, you can use a default export:
 // export default function proxy(request) { ... }
  

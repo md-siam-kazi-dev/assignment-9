@@ -460,7 +460,7 @@ export default function PetCard({ pet, onDelete, onEdit }) {
           <div className="flex w-full max-w-lg flex-col p-4 rounded-2xl border border-black/[0.07] bg-white max-h-[90vh] overflow-hidden">
 
           {/* reqest data show here  */}
-          <Req id={pet._id} />
+          <Req id={pet._id} openReq={openReq} setOpenReq={setOpenReq}/>
 
           <button className="btn border-1 mx-auto rounded-2xl border-gray-500 w-fit mr-0 btn-outline" onClick={() => setOpenReq(false)}><XIcon /> Close </button>
           
