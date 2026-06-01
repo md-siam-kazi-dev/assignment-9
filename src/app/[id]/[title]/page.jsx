@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import Img from "./Img";
 import Modal from "./Modal";
 
-const API_URL = "https://assignment-9-backendsiam.vercel.app";
+const API_URL = "https://ass9-backend-zeta.vercel.app";
 
 export default async function PetDetailsPage({ params }) {
   const { id } = await params;

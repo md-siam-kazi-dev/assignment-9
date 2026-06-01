@@ -3,7 +3,7 @@ import PetCard from './petCard';
 
 const SixPets =async () => {
     const getData = async () => {
-        const res = await fetch('http://assignment-9-backendsiam.vercel.app/6pets');
+        const res = await fetch('http://ass9-backend-zeta.vercel.app/6pets');
         const data = await res.json();
         return data;
     }

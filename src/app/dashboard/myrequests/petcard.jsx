@@ -68,7 +68,7 @@ export default function PetRequestCard({
     try {
       setCancelling(true);
 
-      await fetch(`http://assignment-9-backendsiam.vercel.app/pet/req/${id}`, {
+      await fetch(`http://ass9-backend-zeta.vercel.app/pet/req/${id}`, {
         method: "DELETE",
       });
 

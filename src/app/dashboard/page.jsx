@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-const API_URL = "https://assignment-9-backendsiam.vercel.app";
+const API_URL = "https://ass9-backend-zeta.vercel.app";
 
 const DashBoard = async () => {
   const session = await auth.api.getSession({
