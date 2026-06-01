@@ -105,7 +105,7 @@ export default function PetCard({ pet }) {
 
   const handleAdopt = async () => {
     
-      const res = await fetch("http://ass9-backend-zeta.vercel.app/pet/req", {
+      const res = await fetch("https://ass9-backend-zeta.vercel.app/pet/req", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -200,7 +200,7 @@ export default function PetCard({ pet }) {
               className="flex p-3 w-full justify-center rounded-xl bg-[#1D9E75] text-sm font-semibold text-white transition-opacity duration-150 hover:opacity-90"
               onClick={async () => {
                
-                const r = await fetch("http://ass9-backend-zeta.vercel.app/pet/req");
+                const r = await fetch("https://ass9-backend-zeta.vercel.app/pet/req");
                 const data = await r.json();
                 console.log(data);
                 data.forEach((p) => {
