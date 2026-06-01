@@ -16,7 +16,7 @@ const AddPage = () => {
         
         const data = new FormData(e.target);
         const formData = Object.fromEntries(data.entries());
-        const result= await fetch('https://ass9-backend-zeta.vercel.app/addpet',{
+        const result= await fetch('http://ass9-backend-zeta.vercel.app/addpet',{
           method:'POST',
           headers:{
             Authorization:`b ${token}`,
