@@ -16,6 +16,7 @@ const AddPage = () => {
         
         const data = new FormData(e.target);
         const formData = Object.fromEntries(data.entries());
+        router.push('/')
         try{
            await fetch('https://ass9-backend-zeta.vercel.app/addpet',{
           method:'POST',
