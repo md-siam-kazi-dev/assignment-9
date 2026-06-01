@@ -16,7 +16,9 @@ const AllPage = () => {
     setLoading(true);
 
     const res = await fetch(
-      `https://ass9-backend-zeta.vercel.app/allpets${sQ ? `?search=${sQ}` : ''}`
+      `https://ass9-backend-zeta.vercel.app/allpets${sQ ? `?search=${sQ}` : ''}`,{
+        cache:'no-store'
+      }
     );
 
     const dataa = await res.json();
