@@ -56,7 +56,7 @@ const formatDate = (dateStr) => {
 
 export default function PetRequestCard({
   request,
-  onView,
+ 
   onCancel,
   status,
 }) {
