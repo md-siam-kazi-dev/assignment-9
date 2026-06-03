@@ -195,7 +195,8 @@ export default function PetCard({ pet }) {
         </div>
 
         <div className="flex gap-[10px]">
-          <Dialog>
+          {
+            !pet?.isAdopted && <Dialog>
             <DialogTrigger
               className="flex p-3 w-full justify-center rounded-xl bg-[#1D9E75] text-sm font-semibold text-white transition-opacity duration-150 hover:opacity-90"
               onClick={async () => {
@@ -214,7 +215,7 @@ export default function PetCard({ pet }) {
               <div>Adopt {pet.petName}</div>
             </DialogTrigger>
 
-            {user ? (
+            {user ?  (
               pet.ownerEmail != user.email ? !requested ?  (
                 <DialogContent className="sm:max-w-md rounded-2xl p-0 overflow-hidden gap-0">
                   <DialogHeader className="px-6 pt-6 pb-4 bg-[#F0FBF7] border-b border-[#1D9E75]/20">
@@ -342,6 +343,7 @@ export default function PetCard({ pet }) {
               </DialogContent>
             )}
           </Dialog>
+          }
 
           <Link
             href={`${pet._id}/${pet.petName}`}
