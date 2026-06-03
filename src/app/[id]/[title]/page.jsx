@@ -79,9 +79,9 @@ export default async function PetDetailsPage({ params }) {
           </div>
 
           <div className="mt-12 flex flex-wrap items-center gap-6">
-            <div className="flex gap-[10px]">
+            {!pet?.isAdopted &&  <div className="flex gap-[10px]">
               <Modal user={user} pet={pet} />
-            </div>
+            </div> }
             <p className="text-sm text-[#7a6f62]">
               Adoption fee{" "}
               <span className="font-semibold text-black">${pet.adoptionFee}</span>
